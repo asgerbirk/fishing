@@ -1,22 +1,15 @@
-function setup() {
-
-}
-
+function setup() {}
 
 function draw() {
-
-  if(orientationSensor.hasNewValue) 
-  { 
+  if (orientationSensor.hasNewValue) {
     let gyro = orientationSensor.get();
     let alpha = gyro.alpha; // alpha, beta & gamma
-    console.log(alpha);
+    console.log("SENDT (alpha): " + alpha); // <-- Ændret
     sender(alpha);
-    
   }
 }
 
-const threshold = 10; 
-function touchStarted() 
-{ 
-setupOrientation(threshold); 
+const threshold = 10;
+function touchStarted() {
+  setupOrientation(threshold);
 }
