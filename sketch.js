@@ -32,7 +32,10 @@ function setup() {
   }
 }
 
+let bg = 0;
+
 function draw() {
+  background(bg);
   waterSurface.display();
   fishBox.display();
 
