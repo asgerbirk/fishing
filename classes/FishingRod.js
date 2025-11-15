@@ -6,27 +6,30 @@ class FishingRod {
     this.rodWidth = 100;
   }
 
-  display(rodX, rodY) {
+  display(rodX, rodY, angle = 0) {
+    push();
+
+    translate(rodX, rodY);
+
+    rotate(angle);
+
     strokeWeight(10);
     stroke(50, 25, 0);
-    // Starter i x-koordinatet
-    line(rodX - this.rodWidth / 2, this.rodBaseY, rodX, rodY);
+
+    line(-this.rodWidth / 2, this.rodBaseY - rodY, 0, 0);
 
     noFill();
-    strokeWeight(this.lineThickness + 1);
-    stroke(0);
-
     strokeWeight(this.lineThickness);
     stroke(0);
+    line(0, 0, 0, this.hookLength);
 
-    line(rodX, rodY, rodX, rodY + this.hookLength);
+    pop();
   }
 
-  // Metoden beregner, hvor krogens spids præcist er (uændret)
-  getHookTipPosition(rodX, rodY) {
-    return {
-      x: rodX,
-      y: rodY + this.hookLength,
-    };
+  getHookTipPosition(rodX, rodY, angle = 0) {
+    // Return tip AFTER rotation
+    let tipX = rodX + sin(angle) * this.hookLength;
+    let tipY = rodY + cos(angle) * this.hookLength;
+    return { x: tipX, y: tipY };
   }
 }

@@ -42,7 +42,9 @@ function draw() {
   const FIXED_ROD_X = width / 2;
   const FIXED_ROD_Y = 200;
 
-  fishingRod.display(FIXED_ROD_X, FIXED_ROD_Y);
+  let mappedAngle = map(receivedVal, 0, 360, -60, 60);
+
+  fishingRod.display(FIXED_ROD_X, FIXED_ROD_Y, mappedAngle);
 
   if (orientationSensor.hasNewValue) {
     let gyro = orientationSensor.get();
