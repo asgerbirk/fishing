@@ -15,14 +15,12 @@ const rodY = 200;
 let fishBoxImage;
 let fishBox;
 
-let bg = 255;
-
 function preload() {
   fishImage = loadImage("assets/fish.png");
   fishBoxImage = loadImage("assets/image.png");
 }
 
-let receivedStepFromPhone = 0;
+let receivedStep = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -41,7 +39,7 @@ function setup() {
 }
 
 function draw() {
-  background(bg);
+  background(255);
   waterSurface.display();
   fishBox.display();
 
