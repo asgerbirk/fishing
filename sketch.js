@@ -1,3 +1,5 @@
+let receivedStep = 0;
+
 // fish variabler
 let fishImage;
 let fishList = [];
@@ -19,8 +21,6 @@ function preload() {
   fishImage = loadImage("assets/fish.png");
   fishBoxImage = loadImage("assets/image.png");
 }
-
-let receivedStep = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
