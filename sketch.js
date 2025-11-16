@@ -15,6 +15,8 @@ const rodY = 200;
 let fishBoxImage;
 let fishBox;
 
+let bg = 255;
+
 function preload() {
   fishImage = loadImage("assets/fish.png");
   fishBoxImage = loadImage("assets/image.png");
@@ -38,8 +40,8 @@ function setup() {
   }
 }
 
-let receivedStep = 0;
 function draw() {
+  background(bg);
   waterSurface.display();
   fishBox.display();
 
