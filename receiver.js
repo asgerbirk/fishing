@@ -1,5 +1,3 @@
-let receivedVal = 0;
-
 function modtager(topic, modtagetBesked) {
   let modtagerBuffer = JSON.parse(modtagetBesked);
   console.log("topic" + topic);
@@ -8,5 +6,5 @@ function modtager(topic, modtagetBesked) {
   let value = modtagerBuffer.val;
   console.log("MODTAGET fra " + afsender + ": " + value);
 
-  receivedVal = value;
+  receivedStep = value;
 }

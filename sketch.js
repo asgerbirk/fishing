@@ -8,6 +8,8 @@ const waterLevel = 500;
 
 // fiskestang
 let fishingRod;
+let rodX;
+const rodY = 200;
 
 // fiskeboks
 let fishBoxImage;
@@ -18,9 +20,13 @@ function preload() {
   fishBoxImage = loadImage("assets/image.png");
 }
 
+let receivedStepFromPhone = 0;
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
+
+  rodX = width / 2;
 
   fishBox = new FishBox(100, 10, fishBoxImage, 150, 150);
   fishingRod = new FishingRod();
@@ -32,19 +38,19 @@ function setup() {
   }
 }
 
-let bg = 0;
-
+let receivedStep = 0;
 function draw() {
-  background(bg);
   waterSurface.display();
   fishBox.display();
 
-  const FIXED_ROD_X = width / 2;
-  const FIXED_ROD_Y = 200;
+  const movingSize = 15;
 
-  let mappedAngle = map(receivedVal, 0, 360, -60, 60);
+  rodX += receivedStep * movingSize;
+  rodX = constrain(rodX, 0, width);
 
-  fishingRod.display(FIXED_ROD_X, FIXED_ROD_Y, mappedAngle);
+  receivedStep = 0;
+
+  fishingRod.display(rodX, rodY);
 
   if (orientationSensor.hasNewValue) {
     let gyro = orientationSensor.get();
