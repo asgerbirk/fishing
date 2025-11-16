@@ -6,5 +6,11 @@ function modtager(topic, modtagetBesked) {
   let value = modtagerBuffer.val;
   console.log("MODTAGET fra " + afsender + ": " + value);
 
-  receivedStep = value;
+  if (typeof value === "number") {
+    receivedStep = value;
+  }
+
+  if (value === "extend") {
+    fishingRod.increaseLength(20);
+  }
 }

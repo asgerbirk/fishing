@@ -26,6 +26,10 @@ class FishingRod {
     pop();
   }
 
+  increaseLength(amount = 20) {
+    this.hookLength += amount;
+  }
+
   getHookTipPosition(rodX, rodY, angle = 0) {
     // Return tip AFTER rotation
     let tipX = rodX + sin(angle) * this.hookLength;
