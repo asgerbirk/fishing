@@ -1,6 +1,8 @@
 let receivedStep = 0;
 let caughtFish = null;
 const hookCatchRadius = 30;
+let fishCaughtCount = 0;
+let qrImg;
 
 // fish variabler
 let fishImage;
@@ -22,6 +24,7 @@ let fishBox;
 function preload() {
   fishImage = loadImage("assets/fish.png");
   fishBoxImage = loadImage("assets/image.png");
+  qrImg = loadImage("assets/qrcode.png");
 }
 
 function setup() {
@@ -52,7 +55,43 @@ function moveFishToBucket(fish) {
     fish.caught = false;
     fish.inBucket = true;
     caughtFish = null;
+    fishCaughtCount += 1;
   }
+}
+
+function drawTopRightUI() {
+  const boxWidth = 260;
+  const boxHeight = 220;
+  const margin = 20;
+
+  const x = width - boxWidth - margin;
+  const y = margin;
+
+  // baggrundsboks
+  push();
+  noStroke();
+  fill(0, 0, 0, 150); // semi-transparent sort
+  rect(x, y, boxWidth, boxHeight, 15);
+
+  // tekst
+  fill(255);
+  textSize(14);
+  textAlign(LEFT, TOP);
+  const txt =
+    "To start fishing:\n\n1. Open this link\n   in Chrome on your phone\n2. Scan the QR code\n3. Use the buttons to\n   move the rod.";
+  text(txt, x + 10, y + 10, boxWidth - 20); // wrapped tekst
+
+  // QR-billede
+  const qrSize = 100;
+  image(
+    qrImg,
+    x + boxWidth - qrSize - 10,
+    y + boxHeight - qrSize - 10,
+    qrSize,
+    qrSize
+  );
+
+  pop();
 }
 
 function draw() {
@@ -105,6 +144,17 @@ function draw() {
 
     fish.display();
   }
+
+  fill(0);
+  textSize(24);
+  textAlign(LEFT, TOP);
+  text(
+    "Fish caught: " + fishCaughtCount,
+    fishBox.x,
+    fishBox.y + fishBox.height + 20
+  );
+
+  drawTopRightUI();
 }
 
 const threshold = 10;

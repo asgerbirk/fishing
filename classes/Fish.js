@@ -33,21 +33,21 @@ class Fish {
   }
 
   move() {
-    //implement caught logic later.
-    if (!this.caught) {
-      this.x += this.speed * this.direction;
+    // Hvis fisken er fanget eller i spanden, bevæger den sig ikke selv
+    if (this.caught || this.inBucket) return;
 
-      if (random() < 0.01) {
-        this.direction *= -1;
-      }
+    this.x += this.speed * this.direction;
 
-      if (this.x > width + this.width / 2) {
-        this.direction = -1;
-        this.x = width + this.width / 2;
-      } else if (this.x < -this.width / 2) {
-        this.direction = 1;
-        this.x = -this.width / 2;
-      }
+    if (random() < 0.01) {
+      this.direction *= -1;
+    }
+
+    if (this.x > width + this.width / 2) {
+      this.direction = -1;
+      this.x = width + this.width / 2;
+    } else if (this.x < -this.width / 2) {
+      this.direction = 1;
+      this.x = -this.width / 2;
     }
   }
 }
