@@ -13,4 +13,8 @@ function modtager(topic, modtagetBesked) {
   if (value === "extend") {
     fishingRod.increaseLength(20);
   }
+
+  if (value === "shorten") {
+    fishingRod.decreaseLength(20);
+  }
 }

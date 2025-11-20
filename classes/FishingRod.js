@@ -29,6 +29,9 @@ class FishingRod {
   increaseLength(amount = 20) {
     this.hookLength += amount;
   }
+  decreaseLength(amount = 20) {
+    this.hookLength = max(20, this.hookLength - amount);
+  }
 
   getHookTipPosition(rodX, rodY, angle = 0) {
     // Return tip AFTER rotation
