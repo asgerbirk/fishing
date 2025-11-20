@@ -6,7 +6,10 @@ class Fish {
     this.img = img;
     this.width = 50;
     this.height = 25;
-    this.direction = 1; // 1 for right, -1 for left (for flipping the fish)
+    this.direction = 1;
+
+    this.caught = false;
+    this.inBucket = false;
 
     // Random starting direction
     if (random() < 0.5) {
