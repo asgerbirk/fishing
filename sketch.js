@@ -67,21 +67,18 @@ function drawTopRightUI() {
   const x = width - boxWidth - margin;
   const y = margin;
 
-  // baggrundsboks
   push();
   noStroke();
-  fill(0, 0, 0, 150); // semi-transparent sort
+  fill(0, 0, 0, 150);
   rect(x, y, boxWidth, boxHeight, 15);
 
-  // tekst
   fill(255);
   textSize(14);
   textAlign(LEFT, TOP);
   const txt =
     "To start fishing:\n\n1. Open this link\n   in Chrome on your phone\n2. Scan the QR code\n3. Use the buttons to\n   move the rod.";
-  text(txt, x + 10, y + 10, boxWidth - 20); // wrapped tekst
+  text(txt, x + 10, y + 10, boxWidth - 20);
 
-  // QR-billede
   const qrSize = 100;
   image(
     qrImg,
