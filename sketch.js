@@ -60,7 +60,7 @@ function moveFishToBucket(fish) {
 }
 
 function drawTopRightUI() {
-  const boxWidth = 260;
+  const boxWidth = 320;
   const boxHeight = 220;
   const margin = 20;
 
@@ -69,24 +69,21 @@ function drawTopRightUI() {
 
   push();
   noStroke();
-  fill(0, 0, 0, 150);
-  rect(x, y, boxWidth, boxHeight, 15);
+  fill(60, 60, 60, 230);
+  rect(x, y, boxWidth, boxHeight, 20);
 
   fill(255);
-  textSize(14);
+  textSize(16);
   textAlign(LEFT, TOP);
   const txt =
-    "To start fishing:\n\n1. Open this link\n   in Chrome on your phone\n2. Scan the QR code\n3. Use the buttons to\n   move the rod.";
-  text(txt, x + 10, y + 10, boxWidth - 20);
+    "Scan this QR code in your Google Chrome app to control the fishing rod.";
+  text(txt, x + 15, y + 15, boxWidth - 30);
 
-  const qrSize = 100;
-  image(
-    qrImg,
-    x + boxWidth - qrSize - 10,
-    y + boxHeight - qrSize - 10,
-    qrSize,
-    qrSize
-  );
+  const qrSize = 140;
+  const qrX = x + (boxWidth - qrSize) / 2;
+
+  const qrY = y + boxHeight / 2 - qrSize / 2 + 20;
+  image(qrImg, qrX, qrY, qrSize, qrSize);
 
   pop();
 }
@@ -146,7 +143,7 @@ function draw() {
   textSize(24);
   textAlign(LEFT, TOP);
   text(
-    "Fish caught: " + fishCaughtCount,
+    "Fishes caught: " + fishCaughtCount,
     fishBox.x,
     fishBox.y + fishBox.height + 20
   );
