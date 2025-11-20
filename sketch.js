@@ -3,6 +3,8 @@ let caughtFish = null;
 const hookCatchRadius = 30;
 let fishCaughtCount = 0;
 let qrImg;
+let catchSound;
+let backgroundSound;
 
 // fish variabler
 let fishImage;
@@ -25,11 +27,17 @@ function preload() {
   fishImage = loadImage("assets/fish.png");
   fishBoxImage = loadImage("assets/image.png");
   qrImg = loadImage("assets/qrcode.png");
+  backgroundSound = loadSound(
+    "assets/soft-ocean-waves-on-a-rock-beach-sound-190882.mp3"
+  );
+  catchSound = loadSound("assets/box-crash-106687.mp3");
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
+  backgroundSound.setLoop(true);
+  backgroundSound.setVolume(0.3);
 
   rodX = width / 2;
 
@@ -56,6 +64,11 @@ function moveFishToBucket(fish) {
     fish.inBucket = true;
     caughtFish = null;
     fishCaughtCount += 1;
+
+    if (catchSound) {
+      catchSound.setVolume(0.8);
+      catchSound.play();
+    }
   }
 }
 
@@ -154,4 +167,9 @@ function draw() {
 const threshold = 10;
 function touchStarted() {
   setupOrientation(threshold);
+}
+function mousePressed() {
+  if (!backgroundSound.isPlaying()) {
+    backgroundSound.play();
+  }
 }
