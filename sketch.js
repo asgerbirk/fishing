@@ -26,7 +26,7 @@ let fishBox;
 function preload() {
   fishImage = loadImage("assets/fish.png");
   fishBoxImage = loadImage("assets/image.png");
-  qrImg = loadImage("assets/qrcode.png");
+  qrImg = loadImage("assets/frame.png");
   backgroundSound = loadSound(
     "assets/soft-ocean-waves-on-a-rock-beach-sound-190882.mp3"
   );
@@ -66,7 +66,7 @@ function moveFishToBucket(fish) {
     fishCaughtCount += 1;
 
     if (catchSound) {
-      catchSound.setVolume(0.8);
+      catchSound.setVolume(0.6);
       catchSound.play();
     }
   }
@@ -117,13 +117,25 @@ function draw() {
 
   const hookTip = fishingRod.getHookTipPosition(rodX, rodY, 0);
 
+  // If a fish is already on the hook, make it follow the hook tip
+  if (caughtFish && caughtFish.onHook) {
+    caughtFish.x = hookTip.x;
+    caughtFish.y = hookTip.y;
+
+    if (caughtFish.y < waterLevel) {
+      caughtFish.onHook = false;
+    }
+  }
+
+  // If no fish is currently caught, check for collision
   if (!caughtFish) {
     for (let fish of fishList) {
-      if (fish.inBucket) continue;
+      if (fish.inBucket || fish.caught || fish.onHook) continue;
 
       const d = dist(hookTip.x, hookTip.y, fish.x, fish.y);
       if (d < hookCatchRadius) {
         fish.caught = true;
+        fish.onHook = true;
         caughtFish = fish;
         break;
       }
@@ -143,9 +155,9 @@ function draw() {
   }
     */
   for (let fish of fishList) {
-    if (fish === caughtFish && fish.caught && !fish.inBucket) {
+    if (fish.caught && !fish.inBucket && !fish.onHook) {
       moveFishToBucket(fish);
-    } else {
+    } else if (!fish.onHook && !fish.inBucket && !fish.caught) {
       fish.move();
     }
 

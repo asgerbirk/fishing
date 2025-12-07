@@ -33,6 +33,7 @@ class FishingRod {
     this.hookLength = max(20, this.hookLength - amount);
   }
 
+  //Use of GenAI
   getHookTipPosition(rodX, rodY, angle = 0) {
     // Return tip AFTER rotation
     let tipX = rodX + sin(angle) * this.hookLength;

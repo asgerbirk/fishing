@@ -11,6 +11,8 @@ class Fish {
     this.caught = false;
     this.inBucket = false;
 
+    this.onHook = false;
+
     // Random starting direction
     if (random() < 0.5) {
       this.direction = -1;
@@ -24,7 +26,7 @@ class Fish {
 
     // Flip the fish if it swims to the left
     if (this.direction === -1) {
-      scale(-1, 1); // Mirror the image horizontally
+      scale(-1, 1);
     }
 
     image(this.img, -this.width / 2, -this.height / 2, this.width, this.height);
@@ -38,6 +40,7 @@ class Fish {
 
     this.x += this.speed * this.direction;
 
+    //Use of GenAI
     if (random() < 0.01) {
       this.direction *= -1;
     }
