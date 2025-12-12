@@ -45,7 +45,7 @@ function setup() {
   fishingRod = new FishingRod();
   waterSurface = new Water(waterLevel);
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 10; i++) {
     let startY = random(waterLevel + 20, height - 50);
     fishList.push(new Fish(random(width), startY, random(1, 3), fishImage));
   }
