@@ -127,7 +127,7 @@ function draw() {
     }
   }
 
-  // If no fish is currently caught, check for collision
+  // Use of GenAI
   if (!caughtFish) {
     for (let fish of fishList) {
       if (fish.inBucket || fish.caught || fish.onHook) continue;

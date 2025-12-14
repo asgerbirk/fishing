@@ -33,7 +33,7 @@ class Fish {
 
     pop();
   }
-
+  //Use of GenAI
   move() {
     // Hvis fisken er fanget eller i spanden, bevæger den sig ikke selv
     if (this.caught || this.inBucket) return;
